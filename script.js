@@ -26,38 +26,45 @@ function createTaskElement(task, index) {
   const li = document.createElement("li");
   li.classList.add("task-item");
   li.innerHTML = `
-        <div class="task-content">
-            <input type="checkbox" id="task${index}" ${
+    <div class="task-content">
+      <input type="checkbox" id="task${index}" ${
     task.completed ? "checked" : ""
   }>
-            <label for="task${index}" class="${
-    task.completed ? "completed" : ""
-  }">${task.text}</label>
-            <button class="delete-btn" aria-label="Eliminar tarea">🗑️</button>
-        </div>
-        <div class="task-date">Agregada el ${task.date}</div>
-    `;
+      <label for="task${index}" class="${task.completed ? "completed" : ""}">${
+    task.text
+  }</label>
+      <button class="delete-btn" aria-label="Eliminar tarea">🗑️</button>
+    </div>
+    <div class="task-date">Agregada el ${task.date}</div>
+  `;
 
   const checkbox = li.querySelector("input[type='checkbox']");
-  checkbox.addEventListener("change", (e) => {
-    const tasks = getTasks();
-    tasks[index].completed = e.target.checked;
-    saveTasks(tasks);
+  checkbox.addEventListener("change", handleCheckboxChange);
 
-    const label = li.querySelector("label");
-    if (e.target.checked) {
-      label.classList.add("completed");
-      createConfetti();
-    } else {
-      label.classList.remove("completed");
-    }
-  });
-
-  li.querySelector(".delete-btn").addEventListener("click", () => {
-    deleteTask(index);
-  });
+  li.querySelector(".delete-btn").addEventListener("click", () =>
+    deleteTask(index)
+  );
 
   return li;
+}
+
+function handleCheckboxChange(e) {
+  const tasks = getTasks();
+  const index = getTaskIndex(e.target);
+  tasks[index].completed = e.target.checked;
+  saveTasks(tasks);
+
+  const label = e.target.nextElementSibling;
+  label.classList.toggle("completed", e.target.checked);
+
+  if (e.target.checked) {
+    createConfetti();
+  }
+}
+
+function getTaskIndex(element) {
+  const taskId = element.id;
+  return parseInt(taskId.replace("task", ""), 10);
 }
 
 function loadTasks() {
@@ -97,29 +104,27 @@ function deleteTask(index) {
 }
 
 function createConfetti() {
-  const confettiCount = 100;
-  const colors = [
-    "#ff0000",
-    "#00ff00",
-    "#0000ff",
-    "#ffff00",
-    "#ff00ff",
-    "#00ffff",
-  ];
+  const confettiCount = 250;
+  const confettiEmojis = ["🎉", "🎊", "✨", "🌟", "🎈"];
 
   for (let i = 0; i < confettiCount; i++) {
     const confetti = document.createElement("div");
     confetti.classList.add("confetti");
-    confetti.style.backgroundColor =
-      colors[Math.floor(Math.random() * colors.length)];
+    confetti.innerHTML =
+      confettiEmojis[Math.floor(Math.random() * confettiEmojis.length)];
+
     confetti.style.left = Math.random() * 100 + "vw";
-    confetti.style.animationDuration = Math.random() * 3 + 2 + "s";
-    confetti.style.opacity = Math.random();
+    confetti.style.top = -50 - Math.random() * 100 + "px";
+
+    const startPositionX = Math.random() * 200 - 100; // -100 a 100
+    confetti.style.transform = `translateX(${startPositionX}px)`;
+
+    confetti.style.animationDuration = Math.random() * 1.5 + 1 + "s";
     document.body.appendChild(confetti);
 
     setTimeout(() => {
       confetti.remove();
-    }, 5000);
+    }, 3000);
   }
 }
 

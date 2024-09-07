@@ -31,8 +31,18 @@ body {
   min-height: 100%;
   width: auto;
   height: auto;
-  z-index: -1;
+  z-index: -2;
   object-fit: cover;
+}
+
+#video-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: -1;
 }
 
 .poppins-extralight {
@@ -43,8 +53,9 @@ body {
 
 .poppins-title {
   font-family: "Poppins", sans-serif;
-  font-weight: 800;
+  font-weight: 400;
   font-style: normal;
+  font-size: 4rem;
 }
 
 .roboto-regular {
@@ -97,6 +108,7 @@ h1 {
 form {
   display: flex;
   margin-bottom: 2.2rem;
+  align-items: center;
 }
 
 input[type="text"] {
@@ -104,9 +116,10 @@ input[type="text"] {
   padding: 0.9rem 1.3rem;
   font-size: 1.1rem;
   border: 2px solid #ddd;
-  border-radius: 35px 0 0 35px;
+  border-radius: 12px; /* Ajustado para hacerlo más cuadrado pero con esquinas redondeadas */
   outline: none;
   transition: all 0.3s ease;
+  margin-right: 20px; /* Añade espacio entre el input y el botón */
 }
 
 input[type="text"]:focus,
@@ -121,7 +134,7 @@ button {
   background-color: #4caf50;
   color: white;
   border: none;
-  border-radius: 0 35px 35px 0;
+  border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -205,20 +218,29 @@ ul {
 
 .confetti {
   position: fixed;
-  width: 10px;
-  height: 10px;
-  background-color: #f00;
+  font-size: 1.5rem;
   pointer-events: none;
   z-index: 9999;
-  animation: confettiDrop 5s ease-out forwards;
+  animation: confettiDrop 3s ease-out forwards,
+    confettiFade 3s ease-out forwards;
 }
 
 @keyframes confettiDrop {
-  0% {
-    transform: translateY(-100vh) rotate(0deg);
+  from {
+    transform: translateY(0) rotate(0deg);
+  }
+  to {
+    transform: translateY(120vh) rotate(720deg);
+  }
+}
+
+@keyframes confettiFade {
+  0%,
+  90% {
+    opacity: 1;
   }
   100% {
-    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
   }
 }
 
