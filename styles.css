@@ -1,7 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
-
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
 
 body,
 html {
@@ -41,13 +39,20 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.4);
   z-index: -1;
+}
+
+.lobster-regular {
+  font-family: "Lobster", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #3c3d37;
 }
 
 .poppins-extralight {
   font-family: "Poppins", sans-serif;
-  font-weight: 400;
+  font-weight: 500;
   font-style: normal;
 }
 
@@ -56,19 +61,6 @@ body {
   font-weight: 400;
   font-style: normal;
   font-size: 4rem;
-}
-
-.roboto-regular {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.great-vibes-regular {
-  font-family: "Great Vibes", cursive;
-  font-weight: 600;
-  font-style: normal;
-  font-size: 6rem;
 }
 
 .card {
@@ -101,7 +93,7 @@ h1 {
   color: #222;
   text-align: center;
   margin-top: 0;
-  font-size: 2.8rem;
+  font-size: 3.5rem;
   margin-bottom: 2.2rem;
 }
 
@@ -111,15 +103,20 @@ form {
   align-items: center;
 }
 
+input[type="text"]::placeholder {
+  color: #5e5c5c;
+}
+
 input[type="text"] {
   flex-grow: 1;
   padding: 0.9rem 1.3rem;
   font-size: 1.1rem;
+  background-color: #e4e6e7;
   border: 2px solid #ddd;
-  border-radius: 12px; /* Ajustado para hacerlo más cuadrado pero con esquinas redondeadas */
+  border-radius: 12px;
   outline: none;
   transition: all 0.3s ease;
-  margin-right: 20px; /* Añade espacio entre el input y el botón */
+  margin-right: 20px;
 }
 
 input[type="text"]:focus,
@@ -132,7 +129,7 @@ button {
   padding: 0.9rem 1.8rem;
   font-size: 1.1rem;
   background-color: #4caf50;
-  color: white;
+  color: #f9fcfe;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -144,11 +141,11 @@ button:hover {
 }
 
 h2 {
-  color: #222;
+  color: #515149;
   margin-top: 2.2rem;
   margin-bottom: 1.3rem;
   font-size: 2rem;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .task-list-container {
@@ -278,6 +275,7 @@ input[type="checkbox"]:hover {
 }
 
 .delete-btn {
+  display: flex;
   margin-left: auto;
   background: none;
   border: none;
@@ -286,10 +284,12 @@ input[type="checkbox"]:hover {
   padding: 0.3rem 0.6rem;
   border-radius: 5px;
   transition: background-color 0.3s ease;
+  align-items: center;
+  justify-content: center;
 }
 
 .delete-btn:hover {
-  background-color: #ffdddd;
+  background-color: #f9dfb2;
 }
 
 .task-list-container::-webkit-scrollbar {
@@ -297,7 +297,7 @@ input[type="checkbox"]:hover {
 }
 
 .task-list-container::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #e4e6e7;
   border-radius: 10px;
 }
 

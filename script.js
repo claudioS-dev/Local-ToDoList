@@ -33,8 +33,10 @@ function createTaskElement(task, index) {
       <label for="task${index}" class="${task.completed ? "completed" : ""}">${
     task.text
   }</label>
-      <button class="delete-btn" aria-label="Eliminar tarea">🗑️</button>
-    </div>
+  <button class="delete-btn" aria-label="Eliminar tarea">
+    <img src="trash.svg" alt="Icono de eliminar" width="24" height="24">
+  </button>
+</div>
     <div class="task-date">Agregada el ${task.date}</div>
   `;
 
